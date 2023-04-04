@@ -1,0 +1,99 @@
+.header {
+  position: relative;
+  top: 6vh;
+
+  .top-bar {
+    background-color: #046276;
+    height: 10vh;
+    width: 100vw;
+  }
+
+  .bottom-bar {
+    display: flex;
+    position: relative;
+    background-color: #FF6D6D;
+    height: 5vh;
+    width: 45vw;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 25px;
+    border-radius: 10px;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 17px;
+
+      li {
+        position: relative;
+        left: 14vw;
+        list-style: none;
+      }
+    }
+
+    li a {
+      text-decoration: none;
+      color: yellow;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .card-column {
+
+    .card {
+
+      .three-card-row {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+      }
+
+      .card-row {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+      }
+
+      .single-card {
+        background-color: #046276;
+        width: 25vw;
+        height: 15vh;
+      }
+
+      .card-left {
+        position: absolute;
+        float: left;
+        width: 25vw;
+        height: 25vh;
+        left: 15vw;
+        background-color: #046276;
+      }
+
+      .card-right {
+        width: 25vw;
+        height: 25vh;
+        position: relative;
+        float: right;
+        right: 15vw;
+        background-color:  	#046276;
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: #FF6D6D;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 6vh;
+}
