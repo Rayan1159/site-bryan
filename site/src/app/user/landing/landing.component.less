@@ -1,0 +1,30 @@
+:root {
+  --body-bg: #1E1E1E;
+}
+
+body {
+  background-color: var(--body-bg);
+  margin: 5px 5px 5px 5px;
+}
+
+.header {
+  border-bottom: 1px solid gray;
+
+  .logo {
+    span {
+      color: white;
+      font-size: 2em;
+    }
+  }
+
+  .navigation {
+    ul li {
+      display: flex;
+      position: absolute;
+      left: 5vw;
+      flex-direction: row;
+      gap: 10px;
+      list-style: none;
+    }
+  }
+}
