@@ -12,13 +12,16 @@ export class LoginComponent {
   public password: String = "";
 
   private endpoint: string = "http://localhost/auth/login";
+
   private data: {} = {
     username: this.username,
     password: this.password
   }
+
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
   });
+
   constructor(private readonly http: HttpClient) {}
   public async login(): Promise<void> {
     this.http.post(this.endpoint, this.data, {
