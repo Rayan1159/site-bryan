@@ -1,0 +1,11 @@
+1. Balance systeem op paneel
+2. Toggle knop voor site om discord bot the disablen voor site maintanance
+3. Failed login attempts loggen op profiel
+4. Profiel foto van de admin naast nieuws posts
+5. Login met discord (OAUTH)
+6. Login met username en password
+7. Dashboard met statistics
+8. News posts op dashboard. (News card heeft scroll bar)
+9. Online users met basis informatie van de ingelodge gebruiker, Username en ip worden voor de helft weg gemarkeerd voor normale gebruikers / customers
+10. Systeem notificaties met swal
+

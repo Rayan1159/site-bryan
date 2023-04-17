@@ -1,49 +1,83 @@
-:root {
-  --body-bg: #1E1E1E;
-}
+header {
+  border-bottom: 1px solid var(--body-gray);
 
 
-body {
   .header {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid gray;
-    width: 100vw;
+    .container-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-
-    .logo {
-      span {
-        position: relative;
-        left: 3.5vw;
-        color: white;
-        font-size: 2em;
-      }
+      padding-inline: 10%;
+      padding-top: 3vh;
+      padding-bottom: 3vh;
     }
+
+    // Logo header
+
+    .logo > a {
+      font-size: 2.5em;
+      color: var(--text-white);
+      text-decoration: none;
+    }
+
+    // Navigation header
 
     .navigation {
       ul {
         display: flex;
         flex-direction: row;
-        gap: 10px;
       }
 
-      li {
-        display: flex;
-        position: relative;
-        left: 7.5vw;
-        flex-direction: row;
-        list-style: none;
-      }
-
-      ul li a {
-        position: relative;
-        flex-direction: row;
-        list-style: none;
+      li > a {
+        color: var(--text-white);
         text-decoration: none;
-        color: limegreen;
-        font-weight: bold;
+        list-style: none;
       }
     }
   }
-}
+
+
+//   .header {
+//     display: flex;
+//     flex-direction: row;
+//     border-bottom: 1px solid gray;
+//     width: 100vw;
+
+
+//     .logo {
+//       span {
+//         position: relative;
+//         left: 3.5vw;
+//         color: white;
+//         font-size: 2em;
+//       }
+//     }
+
+//     .navigation {
+//       ul {
+//         display: flex;
+//         flex-direction: row;
+//         gap: 10px;
+//       }
+
+//       li {
+//         display: flex;
+//         position: relative;
+//         left: 7.5vw;
+//         flex-direction: row;
+//         list-style: none;
+//       }
+
+//       ul li a {
+//         position: relative;
+//         flex-direction: row;
+//         list-style: none;
+//         text-decoration: none;
+//         color: limegreen;
+//         font-weight: bold;
+//       }
+//     }
+//   }
+// }
 
