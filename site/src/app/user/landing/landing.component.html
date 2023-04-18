@@ -1,226 +1,208 @@
 <body>
-<<<<<<< HEAD
 <div class="landing">
-  <header class="header">
-    <div class="logo">
-      <span>Logo</span>
-    </div>
-    <div class="navigation">
-      <ul>
-        <li>
-          <a routerLink="/features">Features</a>
-        </li>
-        <li>
-          <a routerLink="/pricing">Pricing</a>
-        </li>
-        <li>
-          <a routerLink="/contact">Contact</a>
-        </li>
-      </ul>
+  <header>
+    <div class="container-header">
+      <div class="container-header-left">
+        <a routerLink="/">
+          <img class="logo" src="../../../assets/logo.png" height="132" width="132" alt="Logo">
+        </a>
+        <nav>
+          <ul>
+            <li>
+              <a routerLink="/features">Features</a>
+            </li>
+            <li>
+              <a routerLink="/pricing">Pricing</a>
+            </li>
+            <li>
+              <a routerLink="/contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="button-login">
+        <a routerLink="/login">
+          Login
+        </a>
+      </div>
     </div>
   </header>
-</div>
-  <div class="landing">
-    <header>
-      <div class="container-header">
-        <div class="container-header-left">
-          <a routerLink="/">
-            <img class="logo" ngSrc="../../../assets/logo.png" height="132" width="132" alt="Logo">
-          </a>
-          <nav>
-            <ul>
-              <li>
-                <a routerLink="/features">Features</a>
-              </li>
-              <li>
-                <a routerLink="/pricing">Pricing</a>
-              </li>
-              <li>
-                <a routerLink="/contact">Contact</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="button-login">
-          <a routerLink="/login">
-            Login
-          </a>
-        </div>
+  <main class="main_1">
+    <div class="container-left">
+      <h1>Build The Best <br> Discord Server</h1>
+      <p>Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit. Sed <br> enim arcu, placerat nec finibus et, <br>
+        efficitur id felis.</p>
+      <div class="button-register">
+        <a routerLink="/register">Register</a>
       </div>
-    </header>
-    <main class="main_1">
-      <div class="container-left">
-        <h1>Build The Best <br> Discord Server</h1>
-        <p>Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit. Sed <br> enim arcu, placerat nec finibus et, <br> efficitur id felis.</p>
-        <div class="button-register">
-          <a routerLink="/register">Register</a>
-        </div>
-      </div>
-      <div class="container-right">
-        <!-- <img src=""> -->
-      </div>
-    </main>
-    <main class="main_2">
-      <h1>Our Features</h1>
-      <div class="container-information-1">
-        <img class="image-desktop" ngSrc="../../../assets/example_1.png" fill>
+    </div>
+  </main>
+  <main class="main_2">
+    <h1>Our Features</h1>
+    <div class="container-information-1">
+      <img class="image-desktop" src="../../../assets/example_1.png">
 
-        <p class="info">When you use <span>/help info</span> and select the owner commands you can control all the servers except for the main discord server where the bot is used. All these commands are easy to use and are crafted with skill and will be available as owner.
-        </p>
+      <p class="info">When you use <span>/help info</span> and select the owner commands you can control all the servers
+        except for the main discord server where the bot is used. All these commands are easy to use and are crafted
+        with skill and will be available as owner.
+      </p>
 
-      </div>
+    </div>
 
-      <div class="container-information-2">
+    <div class="container-information-2">
 
-        <img class="image-desktop" src="../../../assets/example_2.png">
+      <img class="image-desktop" src="../../../assets/example_2.png">
 
-        <p class="info">As admin you can use <span>/help info</span> and select the admin commands. With these commands you will be able to control all the servers except the main server.
-          Most commands are unique to our bot and has many commands to use such as cooldown, anti-links, anti-spam and many more!</p>
+      <p class="info">As admin you can use <span>/help info</span> and select the admin commands. With these commands
+        you will be able to control all the servers except the main server.
+        Most commands are unique to our bot and has many commands to use such as cooldown, anti-links, anti-spam and
+        many more!</p>
 
-      </div>
+    </div>
 
-      <div class="container-information-3">
+    <div class="container-information-3">
 
-        <img class="image-desktop" src="../../../assets/example_3.png">
+      <img class="image-desktop" src="../../../assets/example_3.png">
 
-        <p class="info">The general list of the bot also has powerful functions and has many more to use. For example you can create game carries for any game and has a integrated ticket system which is easy to use.</p>
+      <p class="info">The general list of the bot also has powerful functions and has many more to use. For example you
+        can create game carries for any game and has a integrated ticket system which is easy to use.</p>
 
-      </div>
+    </div>
 
-    </main>
+  </main>
 
-    <main class="main_3">
+  <main class="main_3">
 
-      <h1>Pricing</h1>
+    <h1>Pricing</h1>
 
-      <div class="container-pricing">
+    <div class="container-pricing">
 
-        <div class="pricing">
+      <div class="pricing">
 
-          <h2>Full access</h2>
+        <h2>Full access</h2>
 
-          <h1 class="price">$10/1 month</h1>
+        <h1 class="price">$10/1 month</h1>
 
-          <a class="checkout" routerLink="/checkout">
-            <h3>Buy</h3>
-            <img src="../../../assets/arrow-buy.svg">
-          </a>
-
-        </div>
-
-        <div class="pricing-middle">
-
-          <h2>Full access</h2>
-
-          <div class="price">
-            <h1>$65/6 months</h1>
-            <h3>instead of $70</h3>
-          </div>
-
-          <a class="checkout" routerLink="/checkout">
-            <h3>Buy</h3>
-            <img src="../../../assets/arrow-buy.svg">
-          </a>
-
-          <div class="fade">
-            <img src="../../../assets/fade.png">
-          </div>
-
-        </div>
-
-        <div class="pricing">
-
-          <h2>Full access</h2>
-
-          <h1 class="price">$10/3 months</h1>
-
-          <a class="checkout" routerLink="/checkout">
-            <h3>Buy</h3>
-            <img src="../../../assets/arrow-buy.svg">
-          </a>
-
-        </div>
-
-      </div>
-
-      <div class="container-ticks">
-
-        <div class="container-center">
-
-          <div class="tick">
-            <img src="../../../assets/ticks.png">
-            <p>Powerful Dashboard</p>
-          </div>
-
-          <div class="tick">
-            <img src="../../../assets/ticks.png">
-            <p>Instant Access</p>
-          </div>
-
-          <div class="tick">
-            <img src="../../../assets/ticks.png">
-            <p>Ticket Premium Support</p>
-          </div>
-
-          <div class="tick">
-            <img src="../../../assets/ticks.png">
-            <p>Game Carry System</p>
-          </div>
-
-          <div class="tick">
-            <img src="../../../assets/ticks.png">
-            <p>Slash Commands</p>
-          </div>
-
-          <div class="tick">
-            <img src="../../../assets/ticks.png">
-            <p>Role Systems</p>
-          </div>
-
-          <div class="tick">
-            <img src="../../../assets/ticks.png">
-            <p>Discord Support</p>
-          </div>
-
-          <div class="tick">
-            <img src="../../../assets/ticks.png">
-            <p>100+ Bot Commands</p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </main>
-
-    <main class="main_4">
-
-      <div class="container-support">
-
-        <h1>Questions?</h1>
-
-        <p>If you need any support or have any questions you can join our discord server and get help by creating a ticket.</p>
-
-        <a href="discord.gg">
-          <img src="../../../assets/discord-icon.png">
-          <h2>GO TO DISCORD</h2>
+        <a class="checkout" routerLink="/checkout">
+          <h3>Buy</h3>
+          <img src="../../../assets/arrow-buy.svg">
         </a>
 
       </div>
 
-    </main>
+      <div class="pricing-middle">
 
-    <footer>
+        <h2>Full access</h2>
 
-      <div class="back-to-top">
+        <div class="price">
+          <h1>$65/6 months</h1>
+          <h3>instead of $70</h3>
+        </div>
 
-        <img src="../../../assets/footer.png">
+        <a class="checkout" routerLink="/checkout">
+          <h3>Buy</h3>
+          <img src="../../../assets/arrow-buy.svg">
+        </a>
+
+        <div class="fade">
+          <img src="../../../assets/fade.png">
+        </div>
 
       </div>
 
-    </footer>
+      <div class="pricing">
 
-  </div>
->>>>>>> 5d87e0f8a9b6cb09c66b67e1cafb30ef2e11f8f3
+        <h2>Full access</h2>
+
+        <h1 class="price">$10/3 months</h1>
+
+        <a class="checkout" routerLink="/checkout">
+          <h3>Buy</h3>
+          <img src="../../../assets/arrow-buy.svg">
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="container-ticks">
+
+      <div class="container-center">
+
+        <div class="tick">
+          <img src="../../../assets/ticks.png">
+          <p>Powerful Dashboard</p>
+        </div>
+
+        <div class="tick">
+          <img src="../../../assets/ticks.png">
+          <p>Instant Access</p>
+        </div>
+
+        <div class="tick">
+          <img src="../../../assets/ticks.png">
+          <p>Ticket Premium Support</p>
+        </div>
+
+        <div class="tick">
+          <img src="../../../assets/ticks.png">
+          <p>Game Carry System</p>
+        </div>
+
+        <div class="tick">
+          <img src="../../../assets/ticks.png">
+          <p>Slash Commands</p>
+        </div>
+
+        <div class="tick">
+          <img src="../../../assets/ticks.png">
+          <p>Role Systems</p>
+        </div>
+
+        <div class="tick">
+          <img src="../../../assets/ticks.png">
+          <p>Discord Support</p>
+        </div>
+
+        <div class="tick">
+          <img src="../../../assets/ticks.png">
+          <p>100+ Bot Commands</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <main class="main_4">
+
+    <div class="container-support">
+
+      <h1>Questions?</h1>
+
+      <p>If you need any support or have any questions you can join our discord server and get help by creating a
+        ticket.</p>
+
+      <a href="discord.gg">
+        <img src="../../../assets/discord-icon.png">
+        <h2>GO TO DISCORD</h2>
+      </a>
+
+    </div>
+
+  </main>
+
+  <footer>
+
+    <div class="back-to-top" (click)="scrollToTop()">
+
+      <img src="../../../assets/footer.png">
+
+    </div>
+
+  </footer>
+
+</div>
 
 </body>

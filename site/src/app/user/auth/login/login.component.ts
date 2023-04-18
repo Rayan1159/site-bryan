@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {IUserLoginInterface} from "../../../interfaces/IUserAuthInterface";
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,16 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class LoginComponent {
 
-  public username: String = "";
-  public password: String = "";
+  public user: IUserLoginInterface = {
+    username: "",
+    password: ""
+  }
 
   private endpoint: string = "http://localhost/auth/login";
 
   private data: {} = {
-    username: this.username,
-    password: this.password
+    username: this.user.username,
+    password: this.user.password
   }
 
   private httpHeaders: HttpHeaders = new HttpHeaders({

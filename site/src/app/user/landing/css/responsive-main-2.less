@@ -1,0 +1,47 @@
+@media (min-width: 800px) {
+  .main_2 {
+    padding-inline: 10%;
+    padding-top: 10em;
+
+    h1 {
+      display: flex;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--text-white)
+    }
+
+    .container-information-1, .container-information-2, .container-information-3 {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 7em;
+      padding-top: 7em;
+
+      p {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--text-gray)
+      }
+
+      p > span {
+        color: var(--text-blue);
+        font-weight: 600
+      }
+    }
+
+    .container-information-2 {
+      flex-direction: row-reverse
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .main_2 {
+    .container-information-1, .container-information-2, .container-information-3 {
+      .image-desktop {
+        display: block
+      }
+    }
+  }
+}

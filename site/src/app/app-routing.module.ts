@@ -20,6 +20,11 @@ const routes: Routes = [
   }
 ];
 
+routes.push({
+  path: 'auth',
+  redirectTo: '/auth/login',
+  pathMatch: 'full',
+})
 
 routes.push({
   path: 'dashboard',
