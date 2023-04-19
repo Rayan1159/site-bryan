@@ -69,11 +69,47 @@
   input:focus {
     outline: none;
   }
+
+  // Password show, hide
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    input {
+      width: 100% !important;
+    }
+
+    img {
+      display: block;
+      height: 100%;
+
+      position: relative;
+      right: 25px;
+
+      cursor: pointer;
+    }
+
+  }
 }
+
+// Login button
 
 .container-button {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-inline: 10%;
+
+  margin-top: 15px;
+
+  .register {
+    color: var(--text-gray);
+    font-weight: 600;
+  }
 }
 
 button.submit {
@@ -84,7 +120,7 @@ button.submit {
 
   border: none;
   border-radius: 5px;
-  padding: 5px 10px 5px 10px;
+  padding: 10px 15px 10px 15px;
   font-size: 20px;
   font-weight: 600;
 
@@ -93,5 +129,42 @@ button.submit {
 
 button.submit:hover {
   background-color: var(--hover-purple);
+}
+
+
+
+// Footer design
+
+.back-to-home {
+
+  display: flex;
+  justify-content: center;
+
+  padding-top: 200px;
+
+  img {
+    width: 103px;
+    height: 60px;
+  }
+
+}
+
+@media (min-width: 550px) {
+  .login {
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .back-to-home {
+
+      img {
+        width: 83px;
+        height: 43px;
+      }
+
+    }
+
+  }
 }
 
