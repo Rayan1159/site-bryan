@@ -145,6 +145,7 @@ button.submit:hover {
   img {
     width: 103px;
     height: 60px;
+    cursor: pointer;
   }
 
 }
@@ -152,8 +153,20 @@ button.submit:hover {
 @media (min-width: 550px) {
   .login {
 
+    padding-inline: 35%;
+    padding-top: 5em;
+
     h1 {
       font-size: 30px;
+    }
+    
+    .container-login {
+      margin-top: 6em;
+  
+      padding: 45px;
+  
+      border-radius: 0.5em;
+      background-color: var(--color-pricing);
     }
 
     .back-to-home {
@@ -165,6 +178,66 @@ button.submit:hover {
 
     }
 
+  }
+
+  .container-input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  
+    padding-bottom: 20px;
+    padding-inline: 10%;
+  
+    label {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-white)
+    }
+  
+    input {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-inline: 10px;
+  
+      font-size: 18px;
+  
+      width: 100%;
+  
+      background-color: var(--body-gray-2);
+      color: var(--text-white);
+  
+  
+      border-radius: 5px;
+      border: none;
+      box-sizing: border-box;
+    }
+  
+    input:focus {
+      outline: none;
+    }
+  
+    // Password show, hide
+  
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      
+      input {
+        width: 100% !important;
+      }
+  
+      img {
+        display: block;
+        height: 100%;
+  
+        position: relative;
+        right: 25px;
+  
+        cursor: pointer;
+      }
+  
+    }
   }
 }
 
