@@ -1,99 +1,62 @@
-.header {
-  position: relative;
-  top: 6vh;
-
-  .top-bar {
-    background-color: #046276;
-    height: 10vh;
-    width: 100vw;
-  }
-
-  .bottom-bar {
-    display: flex;
-    position: relative;
-    background-color: #FF6D6D;
-    height: 5vh;
-    width: 45vw;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 25px;
-    border-radius: 10px;
-
-    ul {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 17px;
-
-      li {
-        position: relative;
-        left: 14vw;
-        list-style: none;
-      }
-    }
-
-    li a {
-      text-decoration: none;
-      color: yellow;
-    }
-  }
-}
-
-.container {
+header {
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  justify-content: center;
 
-  .card-column {
+  border-bottom: 1px solid #414141;
+}
 
-    .card {
+nav {
+  position: relative;
+  bottom: 15px;
 
-      .three-card-row {
-        display: flex;
-        flex-direction: row;
-        gap: 15px;
-      }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-      .card-row {
-        display: flex;
-        flex-direction: row;
-        gap: 15px;
-      }
+  z-index: 99;
 
-      .single-card {
-        background-color: #046276;
-        width: 25vw;
-        height: 15vh;
-      }
+  .links {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
 
-      .card-left {
-        position: absolute;
-        float: left;
-        width: 25vw;
-        height: 25vh;
-        left: 15vw;
-        background-color: #046276;
-      }
+    padding-inline: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
 
-      .card-right {
-        width: 25vw;
-        height: 25vh;
-        position: relative;
-        float: right;
-        right: 15vw;
-        background-color:  	#046276;
-      }
+    background-color: var(--color-pricing);
+
+    a {
+      font-size: 20px;
+      font-weight: 800;
+
+      text-decoration: none;
+      color: var(--text-white);
+    }
+
+    .a-active {
+      color: var(--color-active);
+    }
+
+    a:hover {
+      color: var(--hover-purple);
     }
   }
 }
 
-.footer {
-  background-color: #FF6D6D;
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-  height: 6vh;
+footer {
+
+  display: flex;
+  justify-content: center;
+
+  .back-to-home {
+
+    img {
+      width: 83px;
+      height: 43px;
+    }
+
+  }
+
 }
