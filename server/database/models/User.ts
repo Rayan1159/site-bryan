@@ -5,7 +5,7 @@ export class UserModel extends User {
 
     public async startSession(payload: Partial<UserIn>): Promise<boolean | null> {
         if (await this.exists(payload)) {
-            return await verify(payload.password as string, await this.getPassword(payload) as string);
+            return await verify(await this.getPassword(payload) as string, payload.password as string);
         }
         return null
     }
@@ -23,8 +23,11 @@ export class UserModel extends User {
         return null;
     }
 
-    public async create(payload: Partial<UserIn>): Promise<boolean | null> {
-        if (await this.exists(payload)) {
+    public async create(payload: Partial<UserIn>): Promise<boolean | null | string> {
+        const emailRegex: RegExp = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+        if (!emailRegex.test(payload.email as string)) return "Invalid email format";
+
+        if (!(await this.exists(payload))) {
             const created = User.create({
                 email: payload.email,
                 password: await hash(payload.password as string)

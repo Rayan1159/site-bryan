@@ -24,8 +24,9 @@ export class User extends Model<IUserAttributes, UserIn> {
 User.init({
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
+        allowNull: true,
         primaryKey: true,
+        autoIncrement: true
     },
     username: {
         type: DataTypes.STRING(128),
@@ -41,11 +42,11 @@ User.init({
     },
     rank: {
         type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
+        allowNull: true,
     },
     rTitle: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
 }, {
     sequelize,
