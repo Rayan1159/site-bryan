@@ -28,11 +28,11 @@ import {NgOptimizedImage} from "@angular/common";
     BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    BrowserAnimationsModule
   ],
   providers: [
     HttpClient,
-
   ],
   bootstrap: [AppComponent],
 })

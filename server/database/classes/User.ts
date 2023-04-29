@@ -12,7 +12,7 @@ export interface IUserAttributes {
 export interface UserIn extends Optional<IUserAttributes, "id">{}
 export interface UserOut extends Required<IUserAttributes>{}
 
-export class User extends Model<UserIn> {
+export class User extends Model<IUserAttributes, UserIn> {
     declare id: number;
     declare username: string;
     declare email: string;

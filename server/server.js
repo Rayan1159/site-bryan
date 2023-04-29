@@ -37,14 +37,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
-var body_parser_1 = require("body-parser");
+var bodyParser = require("body-parser");
 var User_1 = require("./database/models/User");
 var user = new User_1.UserModel();
 var server = function () { return __awaiter(void 0, void 0, void 0, function () {
     var app;
     return __generator(this, function (_a) {
         app = (0, express_1.default)();
-        app.use(body_parser_1.default);
+        app.use(bodyParser.urlencoded({
+            extended: false
+        }));
         app.set('json spaces', 2);
         app.post("/auth/login", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
             var email, password, started;
@@ -79,30 +81,39 @@ var server = function () { return __awaiter(void 0, void 0, void 0, function () 
                 }
             });
         }); });
-        app.post("/auth/register", function (req, res) {
-            var email = req.body.username;
-            var password = req.body.password;
-            if (email && password) {
-                var created = user.create({
-                    email: email,
-                    password: password
-                });
-                if (created == null)
-                    return res.json({
-                        status: "Failed to register"
-                    });
-                if (created) {
-                    res.json({
-                        status: "User registered"
-                    });
+        app.post("/auth/register", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+            var email, password, created;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        email = req.body.username;
+                        password = req.body.password;
+                        if (!(email && password)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, user.create({
+                                email: email,
+                                password: password
+                            })];
+                    case 1:
+                        created = _a.sent();
+                        if (created == null)
+                            return [2 /*return*/, res.json({
+                                    status: "Failed to register"
+                                })];
+                        if (created) {
+                            res.json({
+                                status: "User registered"
+                            });
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        res.json({
+                            status: "Email or password not set"
+                        });
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
                 }
-            }
-            else {
-                res.json({
-                    status: "Email or password not set"
-                });
-            }
-        });
+            });
+        }); });
         app.listen(1337, function () {
             console.log("Server listening for requests");
         });

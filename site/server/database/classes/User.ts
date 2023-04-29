@@ -11,7 +11,8 @@ export interface IUserAttributes {
   username?: string;
   password?: string;
   email?: string;
-  rank?: string;
+  rank?: number;
+  rTitle?: string;
 }
 
 export interface UserIn extends Optional<IUserAttributes, 'id'> {}
@@ -23,6 +24,7 @@ export class User extends Model<IUserAttributes> {
   declare password: string;
   declare email: string;
   declare rank: string;
+  declare rTitle: string;
 }
 
 User.init({
@@ -40,6 +42,14 @@ User.init({
     allowNull: false
   },
   email: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  rank: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  rTitle: {
     type: DataTypes.STRING,
     allowNull: false
   }

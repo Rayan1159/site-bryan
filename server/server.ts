@@ -1,13 +1,15 @@
-import express from 'express'
-import bodyParser from "body-parser";
+import {default as express} from 'express'
+import * as bodyParser from "body-parser";
 import {UserModel} from "./database/models/User";
-
-const user = new UserModel();
+console.log("started")
 
 const server = async () => {
-    const app = express()
+    const app= express();
+    const user: UserModel = new UserModel();
 
-    app.use(bodyParser);
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }));
     app.set('json spaces', 2)
 
     app.post("/auth/login", async (req, res) => {
@@ -34,12 +36,12 @@ const server = async () => {
         }
     })
 
-    app.post("/auth/register", (req, res) => {
+    app.post("/auth/register", async (req, res) => {
         const email = req.body.username;
         const password = req.body.password;
 
         if (email && password) {
-            const created = user.create({
+            const created = await user.create({
                 email: email,
                 password: password
             })
