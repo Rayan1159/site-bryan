@@ -1,7 +1,8 @@
 import {default as express} from 'express'
 import * as bodyParser from "body-parser";
 import {UserModel} from "./database/models/User";
-console.log("started")
+//import cors
+import cors from "cors";
 
 const server = async () => {
     const app= express();
@@ -10,23 +11,27 @@ const server = async () => {
     app.use(bodyParser.urlencoded({
         extended: false
     }));
+    app.use(bodyParser.json());
+    app.use(cors())
     app.set('json spaces', 2)
 
     app.post("/auth/login", async (req, res) => {
-        const email =  req.body.username;
+        console.log("hit")
+        const email =  req.body.email;
         const password = req.body.password;
 
         if (email && password) {
             const started = await user.startSession({
-                username: email,
+                email: email,
                 password: password
             })
+            console.log(started);
             if (started == null) return res.json({
                 status: "Login failed"
             })
             if (started) {
                 res.json({
-                    status: "logged ins"
+                    status: "Logged in"
                 })
             }
         } else {
@@ -37,7 +42,7 @@ const server = async () => {
     })
 
     app.post("/auth/register", async (req, res) => {
-        const email = req.body.username;
+        const email = req.body.email;
         const password = req.body.password;
 
         if (email && password) {
@@ -65,6 +70,6 @@ const server = async () => {
     })
 }
 
-(async() => {
+(async(): Promise<void> => {
     await server();
 })()

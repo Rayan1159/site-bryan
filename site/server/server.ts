@@ -2,11 +2,10 @@ import 'zone.js/node';
 
 import { APP_BASE_HREF } from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import * as express from 'express';
+import express from 'express';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { AppServerModule } from '../src/main.server';
-import {UserModel} from "./database/models/User";
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -33,15 +32,6 @@ export function app(): express.Express {
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
-
-  server.post("/auth/login", (req, res) => {
-    const user = new UserModel();
-    user.login(req.body).then((result) => {
-      res.json({
-        status: result ? "Logged in" : "Failed to log in"
-      });
-    })
-  })
 
   return server;
 }

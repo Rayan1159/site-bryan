@@ -10,6 +10,21 @@ export class UserModel extends User {
         return null
     }
 
+    public async updateRank(payload: Partial<UserIn>): Promise<boolean | string> {
+        if (await this.exists(payload)) {
+            const updated = await User.update({
+                rank: payload.rank,
+                rTitle: payload.rTitle
+            }, {
+                where: {
+                    email: payload.email
+                }
+            })
+            return !!updated;
+        }
+        return false;
+    }
+
     public async getPassword(payload: Partial<UserIn>): Promise<string | null | undefined> {
         if (await this.exists(payload)) {
             const user = await User.findOne({
@@ -37,7 +52,7 @@ export class UserModel extends User {
         return null
     }
 
-    public async exists(payload: Partial<UserIn>): Promise<boolean> {
+    public async exists(payload: Partial<UserIn>): Promise<boolean | string> {
         const found = await User.findOne({
             where: {
                 email: payload.email
