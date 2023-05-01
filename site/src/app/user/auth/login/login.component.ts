@@ -24,14 +24,15 @@ export class LoginComponent {
   constructor(private readonly http: HttpClient, private readonly toastr: ToastrService) {}
   public async login(): Promise<void> {
     const emailRegex: RegExp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    if (!this.user.email && !this.user.password) this.showToast("Error", "Credentials are not set")
     if (!emailRegex.test(this.user.email)) return; //TODO Trigger error toast
 
     this.http.post(this.endpoint, this.user, {
       headers: this.httpHeaders
     }).subscribe({
       next: (data: any) => {
-        if (data.status == "Login failed") this.showToast("Error", "Login failed", "error");
-        if (data.status == "Logged in") this.showToast("Success", "You have been logged in", "success");
+        if (data.status == "Login failed") this.showToast("Error", "Login failed");
+        if (data.status == "Logged in") this.showToast("Success", "You have been logged in");
       },
       error: (err: any) => {
         console.log(err);
@@ -42,19 +43,15 @@ export class LoginComponent {
     })
   }
 
-  public showToast(title: string, message: string, status: string) {
-    switch(status) {
-      case "success":
-        this.toastr.info(message, title, {
-          easing: 'ease-in',
-          easeTime: 3000,
-          progressBar: true,
-          progressAnimation: 'increasing',
-          timeOut: 3000,
-          closeButton: true,
-          positionClass: 'toast-top-center',
-        });
-        break;
-    }
+  public showToast(title: string, message: string) {
+    this.toastr.info(message, title, {
+      easing: 'ease-in',
+      easeTime: 3000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      timeOut: 3000,
+      closeButton: true,
+      positionClass: 'toast-top-center',
+    });
   }
 }

@@ -1,53 +1,52 @@
 <div>
     <header class="header">
-  
+
       <img src="../../../../assets/header-image.png">
-  
+
     </header>
-  
+
     <main class="register">
-  
+
       <h1>Register</h1>
-  
+
       <div class="container-register">
-  
+
         <div class="container-input">
-          <label>Email</label>
-          <input type="text">
+          <label for="email">Email</label>
+          <input type="email" [(ngModel)]="user.email" name="email" id="email">
         </div>
-  
+
         <div class="container-input">
-          <label>Password</label>
-  
+          <label for="password">Password</label>
           <div class="container">
-            <input type="password">
+            <input type="password" [(ngModel)]="user.password" name="password" id="password">
             <img src="../../../../assets/eye-open.png">
           </div>
         </div>
 
         <div class="container-input">
             <label>Confirm password</label>
-    
+
             <div class="container">
               <input type="password">
               <img src="../../../../assets/eye-open.png">
             </div>
         </div>
-  
+
         <div class="container-button">
           <button class="submit" type="submit">Register</button>
-  
-          <a class="register-link" href="/login">Login</a>
+
+          <a class="register-link" routerLink="auth/login">Login</a>
         </div>
-  
+
       </div>
-  
+
     </main>
-  
+
     <div class="back-to-home">
-  
+
       <img src="../../../assets/footerhome.png">
-  
+
     </div>
-  
+
 </div>

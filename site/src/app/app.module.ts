@@ -14,6 +14,7 @@ import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {NgOptimizedImage} from "@angular/common";
 import {RegisterComponent} from "./user/auth/register/register.component";
 import {TOAST_CONFIG, ToastrModule, ToastrService} from "ngx-toastr";
+import { ServersComponent } from './user/servers/servers.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {TOAST_CONFIG, ToastrModule, ToastrService} from "ngx-toastr";
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    ServersComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),

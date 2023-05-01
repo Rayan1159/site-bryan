@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import {IUserAuthInterface} from "../../../interfaces/IUserAuthInterface";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
+import {OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.less']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
+
   public user: IUserAuthInterface = {
     email: "",
-    password: ""
+    password: "",
+    confirm: ""
   }
 
   public data: any = {
@@ -25,16 +29,53 @@ export class RegisterComponent {
     "accept": "application/json"
   })
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, private readonly toastr: ToastrService) {}
+
+  async ngOnInit(): Promise<void> {
+    await this.generateCaptchaText()
+  }
 
   public async register(): Promise<void> {
     const emailRegex: RegExp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-    if (!emailRegex.test(this.user.email)) return; //TODO Trigger error toast
+    if (!this.user.email && !this.user.password) return this.showToast("Error", "Credentials are not set")
+    if (!emailRegex.test(this.user.email)) return this.showToast("Error", "Invalid email format"); //TODO Trigger error toast
+    if (this.user.password != this.user.confirm) return this.showToast("Error", "Passwords do not match");
 
     this.http.post(this.endpoint, this.data, {
       headers: this.httpHeaders
-    }).subscribe((data: Object): void => {
-      console.log(data);
-    }).unsubscribe();
+    }).subscribe({
+      next: (data: any) => {
+        console.log(data)
+      },
+      error: (err => {
+        console.error(err)
+      }),
+      complete: () => {
+        console.log("Registration fimalized")
+      }
+    })
+  }
+
+  public async generateCaptchaText() {
+    let randomText = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      randomText += characters.charAt(randomIndex);
+    }
+    return randomText;
+  }
+
+  public async showToast(title: string, message: string) {
+    this.toastr.info(message, title, {
+      easing: 'ease-in',
+      easeTime: 3000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      timeOut: 3000,
+      closeButton: true,
+      positionClass: 'toast-top-center',
+    });
   }
 }
