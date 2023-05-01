@@ -13,20 +13,20 @@
 
       <div class="container-input">
         <label>Email</label>
-        <input type="text">
+        <input type="email" [(ngModel)]="user.email" name="email" placeholder="example@provider.com">
       </div>
 
       <div class="container-input">
         <label>Password</label>
 
         <div class="container">
-          <input type="password">
+          <input type="password" [(ngModel)]="user.password" name="password" placeholder="Your password">
           <img src="../../../../assets/eye-open.png">
         </div>
       </div>
 
       <div class="container-button">
-        <button class="submit" type="submit">Login</button>
+        <button class="submit" (click)="login()">Login</button>
 
         <a class="register-link" href="/register">Register</a>
       </div>

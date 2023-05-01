@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, ComponentFactoryResolver} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {IUserLoginInterface} from "../../../interfaces/IUserAuthInterface";
+import {IUserAuthInterface} from "../../../interfaces/IUserAuthInterface";
+import {ToastrService, Toast} from "ngx-toastr";
 
 @Component({
   selector: 'app-root',
@@ -9,28 +10,51 @@ import {IUserLoginInterface} from "../../../interfaces/IUserAuthInterface";
 })
 export class LoginComponent {
 
-  public user: IUserLoginInterface = {
-    username: "",
+  public user: IUserAuthInterface = {
+    email: "",
     password: ""
   }
 
-  private endpoint: string = "http://localhost/auth/login";
-
-  private data: {} = {
-    username: this.user.username,
-    password: this.user.password
-  }
+  private endpoint: string = "http://localhost:1337/auth/login";
 
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
   });
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, private readonly toastr: ToastrService) {}
   public async login(): Promise<void> {
-    this.http.post(this.endpoint, this.data, {
+    const emailRegex: RegExp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    if (!emailRegex.test(this.user.email)) return; //TODO Trigger error toast
+
+    this.http.post(this.endpoint, this.user, {
       headers: this.httpHeaders
-    }).subscribe((data: Object): void => {
-      console.log(data);
-    }).unsubscribe();
+    }).subscribe({
+      next: (data: any) => {
+        if (data.status == "Login failed") this.showToast("Error", "Login failed", "error");
+        if (data.status == "Logged in") this.showToast("Success", "You have been logged in", "success");
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log("Login process finalized");
+      }
+    })
+  }
+
+  public showToast(title: string, message: string, status: string) {
+    switch(status) {
+      case "success":
+        this.toastr.info(message, title, {
+          easing: 'ease-in',
+          easeTime: 3000,
+          progressBar: true,
+          progressAnimation: 'increasing',
+          timeOut: 3000,
+          closeButton: true,
+          positionClass: 'toast-top-center',
+        });
+        break;
+    }
   }
 }

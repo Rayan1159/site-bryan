@@ -8,31 +8,35 @@ import { LandingComponent } from "./user/landing/landing.component";
 import {HomeComponent} from "./user/dashboard/home/home.component";
 import {LoginComponent} from "./user/auth/login/login.component";
 import {FormsModule} from "@angular/forms";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {NgOptimizedImage} from "@angular/common";
+import {RegisterComponent} from "./user/auth/register/register.component";
+import {TOAST_CONFIG, ToastrModule, ToastrService} from "ngx-toastr";
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NoopAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     HttpClient,
-
+    ToastrService,
   ],
   bootstrap: [AppComponent],
 })
