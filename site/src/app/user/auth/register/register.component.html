@@ -28,19 +28,18 @@
             <label>Confirm password</label>
 
             <div class="container">
-              <input type="password">
+              <input type="password" [(ngModel)]="user.confirm" name="password" id="cPassword">
               <img src="../../../../assets/eye-open.png">
             </div>
         </div>
 
         <div class="recaptcha">
-          <re-captcha class="g-recaptcha" (resolved)="resolved($event)" siteKey="5RJNrZEDNYwdvxzPXpfi0"></re-captcha>
+          <re-captcha class="g-recaptcha" (resolved)="resolved($event)" siteKey="6Lfxo9QlAAAAAIwl69HLAh89F56uREisT9NFIknW" id="register-captcha"></re-captcha>
         </div>
 
         <div class="container-button">
-          <button class="submit" type="submit">Register</button>
-
-          <a class="register-link" routerLink="auth/login">Login</a>
+          <button class="submit" (click)="register()">Register</button>
+          <a class="register-link" routerLink="/auth/login">Login</a>
         </div>
 
       </div>
@@ -49,7 +48,7 @@
 
     <div class="back-to-home">
 
-      <img src="../../../assets/footerhome.png">
+      <img src="../../../assets/footerhome.png" routerLink="/">
 
     </div>
 

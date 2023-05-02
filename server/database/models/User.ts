@@ -60,4 +60,12 @@ export class UserModel extends User {
         })
         return !!found;
     }
+
+    public async resolveUser(payload: Partial<UserIn>): Promise<User> {
+        return await User.findOne({
+            where: {
+                email: payload.email
+            }
+        })
+    }
 }

@@ -16,7 +16,6 @@ const server = async () => {
     app.set('json spaces', 2)
 
     app.post("/auth/login", async (req, res) => {
-        console.log("hit")
         const email =  req.body.email;
         const password = req.body.password;
 
@@ -31,7 +30,11 @@ const server = async () => {
             })
             if (started) {
                 res.json({
-                    status: "Logged in"
+                    status: "Logged in",
+                    user: {
+                        data: await user.resolveUser(email),
+                        authenticated: true
+                    }
                 })
             }
         } else {
