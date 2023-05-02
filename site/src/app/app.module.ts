@@ -15,6 +15,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {RegisterComponent} from "./user/auth/register/register.component";
 import {TOAST_CONFIG, ToastrModule, ToastrService} from "ngx-toastr";
 import { ServersComponent } from './user/servers/servers.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ServersComponent } from './user/servers/servers.component';
     HttpClientModule,
     NgOptimizedImage,
     NoopAnimationsModule,
-    ToastrModule.forRoot()
+    RecaptchaModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     HttpClient,

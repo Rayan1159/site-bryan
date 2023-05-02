@@ -9,7 +9,7 @@ import {OnInit} from "@angular/core";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.less']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent {
 
   public user: IUserAuthInterface = {
     email: "",
@@ -31,8 +31,8 @@ export class RegisterComponent implements OnInit{
 
   constructor(private readonly http: HttpClient, private readonly toastr: ToastrService) {}
 
-  async ngOnInit(): Promise<void> {
-    await this.generateCaptchaText()
+  public async resolved(captchaResponse: string) {
+    console.log(captchaResponse)
   }
 
   public async register(): Promise<void> {
@@ -54,17 +54,6 @@ export class RegisterComponent implements OnInit{
         console.log("Registration fimalized")
       }
     })
-  }
-
-  public async generateCaptchaText() {
-    let randomText = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      randomText += characters.charAt(randomIndex);
-    }
-    return randomText;
   }
 
   public async showToast(title: string, message: string) {
