@@ -32,7 +32,10 @@ export class LoginComponent {
     }).subscribe({
       next: (data: any) => {
         if (data.status == "Login failed") this.showToast("Error", "Login failed");
-        if (data.status == "Logged in") this.showToast("Success", "You have been logged in");
+        if (data.status == "Logged in") {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          this.showToast("Success", "You have been logged in");
+        }
       },
       error: (err: any) => {
         console.log(err);
