@@ -4,6 +4,7 @@ import {LandingComponent} from "./user/landing/landing.component";
 import {HomeComponent} from "./user/dashboard/home/home.component";
 import {LoginComponent} from "./user/auth/login/login.component";
 import {RegisterComponent} from "./user/auth/register/register.component";
+import { ServersComponent } from './user/servers/servers.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
   },
   {
     path: 'dashboard/home', component: HomeComponent
+  },
+  {
+    path: 'dashboard/servers', component: ServersComponent
   },
   {
     path: 'auth/login', component: LoginComponent
