@@ -32,11 +32,10 @@ const server = async () => {
                 res.json({
                     status: "Logged in",
                     user: {
-                        data: await user.resolveUser(email),
+                        data: await user.resolveUser({ email }),
                         authenticated: true
                     }
-                })
-            }
+                })}
         } else {
             res.json({
                 status: "Email or password not set"

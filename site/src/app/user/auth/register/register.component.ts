@@ -38,24 +38,18 @@ export class RegisterComponent {
     this.captchaIsSolved = !this.captchaIsSolved;
   }
 
-  public async detectError() {
-    for (let input of [this.emailInput, this.passwordInput, this.confirmInput]) {
-      if (input == null) return;
-      if (input.value == "") {
-        input.style.border = "1px solid red";
-        input.style.border = "box";
-      }
-    }
-  }
-
   public async register(): Promise<void> {
-    const emailRegex: RegExp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-
     if (!this.user.email || !this.user.password || !this.user.confirm) {
-      await this.detectError();
-      return this.showToast("Error", "Credentials are not set")
+      let empty = [];
+      for(let key of [this.user.email, this.user.email, this.user.password]) {
+        if (!key) {
+          empty.push(key)
+        }
+      }
+      return this.showToast("Error", `The following fields are empty: ${empty.join(", ")}`);
     }
 
+    const emailRegex: RegExp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
     if (!emailRegex.test(this.user.email)) return this.showToast("Error", "Invalid email format");
     if (this.user.password != this.user.confirm) return this.showToast("Error", "Passwords do not match");
     if (!this.captchaIsSolved) return this.showToast("Error", "Captcha is not solved");
@@ -65,7 +59,7 @@ export class RegisterComponent {
     }).subscribe({
       next: (data: any) => {
         if (data.status == "User registered") {
-          this.showToast("Success", "You're noe registered");
+          this.showToast("Success", "You're now registered");
           setTimeout(() => {
             this.router.navigate(["/auth/login"])
           }, 3 * 1000)
