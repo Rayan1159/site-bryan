@@ -17,6 +17,8 @@ export class RegisterComponent {
   @ViewChild('password') passwordInput?: HTMLInputElement;
   @ViewChild('confirm') confirmInput?: HTMLInputElement;
 
+  public passwordShown: boolean = false;
+
   private captchaIsSolved: boolean = false;
 
   public user: IUserAuthInterface = {
@@ -59,7 +61,7 @@ export class RegisterComponent {
     }).subscribe({
       next: (data: any) => {
         if (data.status == "User registered") {
-          this.showToast("Success", "You're now registered");
+          this.showToast("Success", "You're now777 registered");
           setTimeout(() => {
             this.router.navigate(["/auth/login"])
           }, 3 * 1000)
@@ -80,6 +82,11 @@ export class RegisterComponent {
         this.captchaElement.reset();
       }
     })
+  }
+
+  public async showPassword(): Promise<void> {
+    this.passwordShown = !this.passwordShown;
+    console.log(this.passwordShown)
   }
 
   public async showToast(title: string, message: string) {

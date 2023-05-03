@@ -19,8 +19,9 @@
         <div class="container-input">
           <label for="password">Password</label>
           <div class="container">
-            <input type="password" [(ngModel)]="user.password" name="password" id="password">
-            <img src="../../../../assets/eye-open.png">
+            <input type="password" [(ngModel)]="user.password" name="password" id="password" class>
+            <button (click)="showPassword()" *ngIf="!passwordShown" class="shown-password">Show</button>
+            <button (click)="showPassword()" *ngIf="passwordShown" class="shown-password">Hide</button>
           </div>
         </div>
 
@@ -28,8 +29,7 @@
             <label>Confirm password</label>
 
             <div class="container">
-              <input type="password" [(ngModel)]="user.confirm" name="password" id="cPassword">
-              <img src="../../../../assets/eye-open.png">
+              <input type="password" [(ngModel)]="user.confirm" name="password" id="cPassword" class="input-password">
             </div>
         </div>
 

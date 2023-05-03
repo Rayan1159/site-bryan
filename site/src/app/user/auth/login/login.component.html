@@ -21,7 +21,8 @@
 
         <div class="container">
           <input type="password" [(ngModel)]="user.password" name="password" placeholder="Your password">
-          <img src="../../../../assets/eye-open.png">
+          <button (click)="showPassword()" *ngIf="!passwordShown" class="shown-password">Show</button>
+          <button (click)="showPassword()" *ngIf="passwordShown" class="shown-password">Hide</button>
         </div>
       </div>
 

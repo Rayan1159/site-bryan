@@ -2,6 +2,7 @@ import {Component, ComponentFactoryResolver} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {IUserAuthInterface} from "../../../interfaces/IUserAuthInterface";
 import {ToastrService, Toast} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -15,13 +16,15 @@ export class LoginComponent {
     password: ""
   }
 
+  public passwordShown: boolean = false;
+
   private endpoint: string = "http://localhost:1337/auth/login";
 
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
   });
 
-  constructor(private readonly http: HttpClient, private readonly toastr: ToastrService) {}
+  constructor(private readonly http: HttpClient, private readonly toastr: ToastrService, private router: Router) {}
   public async login(): Promise<void> {
     const emailRegex: RegExp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
     if (!this.user.email && !this.user.password) this.showToast("Error", "Credentials are not set")
@@ -35,6 +38,9 @@ export class LoginComponent {
         if (data.status == "Logged in") {
           localStorage.setItem("user", JSON.stringify(data.user));
           this.showToast("Success", "You have been logged in");
+          setTimeout(() => {
+            this.router.navigate(["/dashboard/home"])
+          }, 3 * 1000)
         }
       },
       error: (err: any) => {
@@ -44,6 +50,10 @@ export class LoginComponent {
         console.log("Login process finalized");
       }
     })
+  }
+
+  public async showPassword(): Promise<void> {
+    this.passwordShown = !this.passwordShown;
   }
 
   public showToast(title: string, message: string) {
