@@ -12,13 +12,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.less']
 })
 export class RegisterComponent {
-  @ViewChild('register-captcha') captchaElement?: RecaptchaComponent;
-  @ViewChild('email') emailInput?: HTMLInputElement;
-  @ViewChild('password') passwordInput?: HTMLInputElement;
-  @ViewChild('confirm') confirmInput?: HTMLInputElement;
+  @ViewChild('recaptcha') captchaElement?: RecaptchaComponent;
 
   public passwordShown: boolean = false;
-
   private captchaIsSolved: boolean = false;
 
   public user: IUserAuthInterface = {
@@ -86,7 +82,6 @@ export class RegisterComponent {
 
   public async showPassword(): Promise<void> {
     this.passwordShown = !this.passwordShown;
-    console.log(this.passwordShown)
   }
 
   public async showToast(title: string, message: string) {

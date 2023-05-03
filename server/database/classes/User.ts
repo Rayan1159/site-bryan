@@ -7,6 +7,7 @@ export interface IUserAttributes {
     password?: string;
     rank?: number;
     rTitle?: string;
+    sessionId?: string;
 }
 
 export interface UserIn extends Optional<IUserAttributes, "id">{}
@@ -19,6 +20,7 @@ export class User extends Model<IUserAttributes, UserIn> {
     declare password: string;
     declare rank: number;
     declare rTitle: string;
+    declare sessionId: string;
 }
 
 User.init({
@@ -48,6 +50,9 @@ User.init({
         type: DataTypes.STRING,
         allowNull: true,
     },
+    sessionId: {
+        type: DataTypes.STRING(35),
+    }
 }, {
     sequelize,
     tableName: 'users',

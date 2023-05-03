@@ -20,11 +20,11 @@ const server = async () => {
         const password = req.body.password;
 
         if (email && password) {
+            const data = await user.resolveUser({ email });
             const started = await user.startSession({
                 email: email,
                 password: password
             })
-            console.log(started);
             if (started == null) return res.json({
                 status: "Login failed"
             })
@@ -32,7 +32,7 @@ const server = async () => {
                 res.json({
                     status: "Logged in",
                     user: {
-                        data: await user.resolveUser({ email }),
+                        id: data.dataValues.sessionId,
                         authenticated: true
                     }
                 })}
@@ -44,8 +44,8 @@ const server = async () => {
     })
 
     app.post("/auth/register", async (req, res) => {
-        const email = req.body.email;
-        const password = req.body.password;
+        const email: string = req.body.email;
+        const password: string = req.body.password;
 
         if (email && password) {
             const created = await user.create({
@@ -69,6 +69,25 @@ const server = async () => {
 
     app.listen(1337, () => {
         console.log("Server listening for requests")
+    })
+
+    app.post("/services/user", async (req, res, next) => {
+        const task: string = req.body.task;
+        const sessionId: string = req.body.sessionId;
+
+        if (task == "resolveName") {
+            const data: string = await user.getUsername({
+                sessionId: sessionId
+            })
+            if (data == null) return res.json({
+                status: "Failed to resolve username"
+            });
+            res.json({
+                status: "Username resolved",
+                username: data
+            });
+        }
+
     })
 }
 

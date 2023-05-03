@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver} from '@angular/core';
+import {Component, ComponentFactoryResolver, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {IUserAuthInterface} from "../../../interfaces/IUserAuthInterface";
 import {ToastrService, Toast} from "ngx-toastr";
@@ -10,7 +10,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.less']
 })
 export class LoginComponent {
-
   public user: IUserAuthInterface = {
     email: "",
     password: ""
@@ -44,7 +43,10 @@ export class LoginComponent {
         }
       },
       error: (err: any) => {
-        console.log(err);
+        if (err) {
+          console.log(err);
+          this.showToast("Error", "Login failed, check console for errors");
+        }
       },
       complete: () => {
         console.log("Login process finalized");

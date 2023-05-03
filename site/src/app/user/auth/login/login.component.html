@@ -20,10 +20,9 @@
         <label>Password</label>
 
         <div class="container">
-          <input type="password" [(ngModel)]="user.password" name="password" placeholder="Your password">
-          <button (click)="showPassword()" *ngIf="!passwordShown" class="shown-password">Show</button>
-          <button (click)="showPassword()" *ngIf="passwordShown" class="shown-password">Hide</button>
-        </div>
+          <input [type]="passwordShown ? 'text' : 'password'" type="password" [(ngModel)]="user.password" name="password" placeholder="Your password">
+          <button (click)="showPassword()" class="shown-password" [innerHTML]="!passwordShown ? 'Show' : 'Hide'"></button>
+      </div>
       </div>
 
       <div class="container-button">

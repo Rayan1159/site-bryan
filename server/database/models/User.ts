@@ -5,9 +5,16 @@ export class UserModel extends User {
 
     public async startSession(payload: Partial<UserIn>): Promise<boolean | null> {
         if (await this.exists(payload)) {
-            return await verify(await this.getPassword(payload) as string, payload.password as string);
+            const password = await this.getPassword(payload);
         }
         return null
+    }
+
+    public async generateStaticSessionId(length: number): Promise<string> {
+        const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let result = "";
+        for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+        return result;
     }
 
     public async updateRank(payload: Partial<UserIn>): Promise<boolean | string> {
@@ -17,7 +24,7 @@ export class UserModel extends User {
                 rTitle: payload.rTitle
             }, {
                 where: {
-                    email: payload.email
+                    sessionId: payload.sessionId
                 }
             })
             return !!updated;
@@ -32,7 +39,6 @@ export class UserModel extends User {
                     email: payload.email
                 }
             })
-            if (user == null) return null;
             return user.dataValues.password;
         }
         return null;
@@ -45,7 +51,8 @@ export class UserModel extends User {
         if (!(await this.exists(payload))) {
             const created = User.create({
                 email: payload.email,
-                password: await hash(payload.password as string)
+                password: await hash(payload.password as string),
+                sessionId: await this.generateStaticSessionId(35)
             })
             return !!created;
         }
@@ -64,8 +71,19 @@ export class UserModel extends User {
     public async resolveUser(payload: Partial<UserIn>): Promise<User> {
         return await User.findOne({
             where: {
-                email: payload.email
+                sessionId: payload.sessionId
             }
         })
+    }
+
+    public async getUsername(payload: Partial<UserIn>): Promise<string | null> {
+        const resolvedUser = await this.resolveUser(payload);
+        const data = await User.findOne({
+            where: {
+                email: resolvedUser.dataValues.email
+            }
+        })
+        if (data == null) return;
+        return data.dataValues.username;
     }
 }

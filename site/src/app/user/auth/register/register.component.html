@@ -13,15 +13,14 @@
 
         <div class="container-input">
           <label for="email">Email</label>
-          <input type="email" [(ngModel)]="user.email" name="email" id="email">
+          <input type="email" [(ngModel)]="user.email" name="email" id="email" placeholder="Your email">
         </div>
 
         <div class="container-input">
           <label for="password">Password</label>
           <div class="container">
-            <input type="password" [(ngModel)]="user.password" name="password" id="password" class>
-            <button (click)="showPassword()" *ngIf="!passwordShown" class="shown-password">Show</button>
-            <button (click)="showPassword()" *ngIf="passwordShown" class="shown-password">Hide</button>
+            <input [type]="passwordShown ? 'text' : 'password'" type="password" [(ngModel)]="user.password" name="password" placeholder="Your password" id="password" class>
+            <button (click)="showPassword()" class="shown-password" [innerHTML]="!passwordShown ? 'Show' : 'Hide'"></button>
           </div>
         </div>
 
@@ -29,12 +28,12 @@
             <label>Confirm password</label>
 
             <div class="container">
-              <input type="password" [(ngModel)]="user.confirm" name="password" id="cPassword" class="input-password">
+              <input [type]="passwordShown ? 'text' : 'password'" type="password" [(ngModel)]="user.confirm" name="password" id="cPassword" placeholder="Confirm password" class="input-password">
             </div>
         </div>
 
         <div class="recaptcha">
-          <re-captcha class="g-recaptcha" (resolved)="resolved($event)" siteKey="6Lfxo9QlAAAAAIwl69HLAh89F56uREisT9NFIknW" id="register-captcha"></re-captcha>
+          <re-captcha #recaptcha class="g-recaptcha" (resolved)="resolved($event)" siteKey="6Lfxo9QlAAAAAIwl69HLAh89F56uREisT9NFIknW" id="register-captcha"></re-captcha>
         </div>
 
         <div class="container-button">
