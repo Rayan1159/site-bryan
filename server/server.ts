@@ -3,10 +3,12 @@ import * as bodyParser from "body-parser";
 import {UserModel} from "./database/models/User";
 //import cors
 import cors from "cors";
+import {NewsModel} from "./database/models/News";
 
 const server = async () => {
     const app= express();
     const user: UserModel = new UserModel();
+    const news: NewsModel = new NewsModel();
 
     app.use(bodyParser.urlencoded({
         extended: false
@@ -43,6 +45,48 @@ const server = async () => {
         }
     })
 
+    app.post("/general/news/create", async (req, res) => {
+        const title: string = req.body.title;
+        const content: string = req.body.content;
+        const sessionId: string = req.body.sessionId;
+        const author: string = await user.getUsername({
+            sessionId: sessionId
+        })
+
+        if (title && content && author) {
+            const created = await news.create({
+                title: title,
+                content: content,
+                author: author,
+            })
+            if (created == null) return res.json({
+                status: "Failed to create news"
+            })
+            return res.json({
+                status: "News created"
+            })
+        }
+    })
+
+    app.post("/services/user", async (req, res, next) => {
+        const task: string = req.body.task;
+        const sessionId: string = req.body.sessionId;
+
+        if (task == "resolveName") {
+            const data: string = await user.getUsername({
+                sessionId: sessionId
+            })
+            if (data == null) return res.json({
+                status: "Failed to resolve username"
+            });
+            res.json({
+                status: "Username resolved",
+                username: data
+            });
+        }
+
+    })
+
     app.post("/auth/register", async (req, res) => {
         const email: string = req.body.email;
         const password: string = req.body.password;
@@ -71,24 +115,6 @@ const server = async () => {
         console.log("Server listening for requests")
     })
 
-    app.post("/services/user", async (req, res, next) => {
-        const task: string = req.body.task;
-        const sessionId: string = req.body.sessionId;
-
-        if (task == "resolveName") {
-            const data: string = await user.getUsername({
-                sessionId: sessionId
-            })
-            if (data == null) return res.json({
-                status: "Failed to resolve username"
-            });
-            res.json({
-                status: "Username resolved",
-                username: data
-            });
-        }
-
-    })
 }
 
 (async(): Promise<void> => {

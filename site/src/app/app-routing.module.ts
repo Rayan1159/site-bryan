@@ -5,7 +5,7 @@ import {HomeComponent} from "./user/dashboard/home/home.component";
 import {LoginComponent} from "./user/auth/login/login.component";
 import {RegisterComponent} from "./user/auth/register/register.component";
 import { ServersComponent } from './user/servers/servers.component';
-import {AuthGuard} from "./auth.guard";
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
   {
