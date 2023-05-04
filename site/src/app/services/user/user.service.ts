@@ -7,7 +7,9 @@ import {ToastrService} from "ngx-toastr";
 })
 export class UserService {
 
-  private endpoint: string = "http://localhost:1337/service/user";
+  private endpoint: string = "http://localhost:1337/services/user";
+
+  private userData?: any
 
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -15,7 +17,6 @@ export class UserService {
   })
 
   constructor(private readonly request: HttpClient,
-              private userData: any,
               private toastr: ToastrService) {
     this.userData = JSON.parse(localStorage.getItem("user") || "{}");
   }
@@ -25,8 +26,12 @@ export class UserService {
   }
 
   public async getUsername(): Promise<string | null> {
-    const task: {task: string}  = {
-      task: "resolveName"
+    const task: {
+      task: string,
+      sessionId: any
+    }  = {
+      task: "resolveName",
+      sessionId: this.userData.id
     }
 
     if (await this.isAuthenticated()){
@@ -35,7 +40,32 @@ export class UserService {
       }).subscribe({
         next: (data: any) => {
           if (data) {
-            return data.user.username;
+            return data.username;
+          }
+        },
+        error: (err: any) => {
+          this.showToast("Error", "Check console");
+        },
+        complete: () => {
+          return;
+        }
+      })
+    }
+    return null;
+  }
+
+  public async getRole(): Promise<string | null> {
+    const task: {task: string}  = {
+      task: "getRole"
+    }
+
+    if (await this.isAuthenticated()){
+      this.request.post(this.endpoint, task, {
+        headers: this.httpHeaders
+      }).subscribe({
+        next: (data: any) => {
+          if (data) {
+            return data.role;
           }
         },
         error: (err: any) => {
@@ -59,6 +89,27 @@ export class UserService {
       closeButton: true,
       positionClass: 'toast-top-center',
     });
+  }
+
+  public async registeredUsers(): Promise<any> {
+    const task = {
+      task: "registeredUsers"
+    }
+    this.request.post(this.endpoint, task, {
+      headers: this.httpHeaders
+    }).subscribe({
+      next: (data: any) => {
+        if (data) {
+          return data.users;
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+      complete: () => {
+        return;
+      }
+    })
   }
 
 }

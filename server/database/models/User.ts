@@ -6,6 +6,7 @@ export class UserModel extends User {
     public async startSession(payload: Partial<UserIn>): Promise<boolean | null> {
         if (await this.exists(payload)) {
             const password = await this.getPassword(payload);
+            return verify(password, payload.password as string)
         }
         return null
     }
@@ -15,6 +16,14 @@ export class UserModel extends User {
         let result = "";
         for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
         return result;
+    }
+
+    public async getRole(payload: Partial<UserIn>): Promise<string | null> {
+        if (await this.exists(payload)) {
+            const user = await this.resolveUser(payload);
+            return user.dataValues.rTitle;
+        }
+        return null
     }
 
     public async updateRank(payload: Partial<UserIn>): Promise<boolean | string> {
@@ -70,9 +79,7 @@ export class UserModel extends User {
 
     public async resolveUser(payload: Partial<UserIn>): Promise<User> {
         return await User.findOne({
-            where: {
-                sessionId: payload.sessionId
-            }
+            where: payload
         })
     }
 
@@ -80,10 +87,37 @@ export class UserModel extends User {
         const resolvedUser = await this.resolveUser(payload);
         const data = await User.findOne({
             where: {
-                email: resolvedUser.dataValues.email
+                sessionId: payload.sessionId
             }
         })
         if (data == null) return;
         return data.dataValues.username;
+    }
+
+    public async setProfilePicture(payload: Partial<UserIn>): Promise<boolean | null> {
+        if (await this.exists(payload)) {
+            const updated = await User.update({
+                profile: payload.profile
+            }, {
+                where: {
+                    sessionId: payload.sessionId
+                }
+            })
+            return !!updated;
+        }
+        return null
+    }
+
+    public async getProfilePicture(payload: Partial<UserIn>): Promise<string | null> {
+        if (await this.exists(payload)) {
+            const data = await User.findOne({
+                where: {
+                    sessionId: payload.sessionId
+                }
+            })
+            if (data == null) return;
+            return data.dataValues.profile;
+        }
+        return null
     }
 }

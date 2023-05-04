@@ -17,6 +17,7 @@ import {TOAST_CONFIG, ToastrModule, ToastrService} from "ngx-toastr";
 import { ServersComponent } from './user/servers/servers.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import {UserService} from "./services/user/user.service";
+import {NewsService} from "./services/news/news.service";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {UserService} from "./services/user/user.service";
     HttpClient,
     ToastrService,
     UserService,
+    NewsService
   ],
   bootstrap: [AppComponent],
 })

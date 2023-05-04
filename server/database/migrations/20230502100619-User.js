@@ -21,6 +21,9 @@ module.exports = {
       email: Sequelize.STRING,
       rank: Sequelize.INTEGER,
       rTitle: Sequelize.STRING,
+      sessionId: Sequelize.STRING(175),
+      profile: Sequelize.STRING,
+      discordName: Sequelize.STRING
     });
   },
 

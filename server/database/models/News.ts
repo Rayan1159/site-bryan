@@ -10,7 +10,7 @@ export class NewsModel extends News {
         }
     }
 
-    public async exists(payload: Partial<NewsInput>): Promise<boolean> {
+    public async exists(payload: Partial<NewsInput>): Promise<boolean | null> {
         const data = await News.findOne({
             where: payload
         })
@@ -26,6 +26,10 @@ export class NewsModel extends News {
             return true;
         }
         return false;
+    }
+
+    public async getNews(): Promise<any[]> {
+        return await News.findAll()
     }
 
 }

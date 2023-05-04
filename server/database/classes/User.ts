@@ -8,6 +8,8 @@ export interface IUserAttributes {
     rank?: number;
     rTitle?: string;
     sessionId?: string;
+    profile?: string;
+    discordName?: string
 }
 
 export interface UserIn extends Optional<IUserAttributes, "id">{}
@@ -21,6 +23,8 @@ export class User extends Model<IUserAttributes, UserIn> {
     declare rank: number;
     declare rTitle: string;
     declare sessionId: string;
+    declare profile: string;
+    declare discordName: string;
 }
 
 User.init({
@@ -52,6 +56,14 @@ User.init({
     },
     sessionId: {
         type: DataTypes.STRING(35),
+    },
+    profile: {
+        type: DataTypes.STRING(200),
+        allowNull: true,
+    },
+    discordName: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
     }
 }, {
     sequelize,
@@ -59,3 +71,7 @@ User.init({
     freezeTableName: true,
     timestamps: false
 })
+
+User.sync({force: true})
+    .then(() => console.log("User table synced"))
+    .catch((err) => console.log(err))
