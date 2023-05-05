@@ -10,15 +10,18 @@ import {NewsService} from "../../../services/news/news.service";
 
 })
 export class HomeComponent implements OnInit {
+  protected readonly Object = Object;
 
   public username?: Promise<string | null>;
-  public posts?: any[];
+
+  public posts?: any
+  public postsArray?: any[]
 
   constructor(private readonly user: UserService,
               private news: NewsService) {}
 
   async ngOnInit(): Promise<void> {
     this.username = this.user.getUsername();
+    this.posts = await this.news.getNews();
   }
-
 }

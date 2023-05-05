@@ -47,12 +47,11 @@ userRoutes.post("/register", async (req, res) => {
             status: "Failed to register"
         })
         if (created) {
-            res.json({
+           return res.json({
                 status: "User registered"
             })
         }
-    } else {
-        res.json({
+        return res.json({
             status: "Email or password not set"
         })
     }
