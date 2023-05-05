@@ -12,10 +12,10 @@ const routes: Routes = [
     path: '', component: LandingComponent
   },
   {
-    path: 'dashboard/home', component: HomeComponent, canActivate: [AuthGuard]
+    path: 'dashboard/home', component: HomeComponent,
   },
   {
-    path: "dashboard/servers", component: ServersComponent, canActivate: [AuthGuard]
+    path: "dashboard/servers", component: ServersComponent,
   },
   {
     path: 'dashboard/servers', component: ServersComponent
