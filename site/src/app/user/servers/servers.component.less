@@ -49,7 +49,7 @@ header {
     .container {
       width: 50%;
       height: 250px;
-      border-radius: 5px;
+      border-radius: 0.5em;
       margin: 0 auto;
       margin-top: 50px;
         
@@ -78,7 +78,7 @@ header {
 
         min-width: 100%;
         height: 250px;
-        border-radius: 5px;
+        border-radius: 0.5em;
 
         h1 h3 {
             display: inline-block;
@@ -151,3 +151,40 @@ header {
     }
   
   }
+
+// Toggle
+
+.onoffswitch {
+  position: relative; width: 66px;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.onoffswitch-label {
+  display: block; overflow: hidden; cursor: pointer;
+  height: 33px; padding: 0; line-height: 33px;
+  border: 2px solid #E3E3E3; border-radius: 33px;
+  background-color: #FFFFFF;
+  transition: background-color 0.2s ease-in;
+}
+.onoffswitch-label:before {
+  content: "";
+  display: block; width: 33px; margin: 0px;
+  background: #FFFFFF;
+  position: absolute; top: 0; bottom: 0;
+  right: 31px;
+  border: 2px solid #E3E3E3; border-radius: 33px;
+  transition: all 0.2s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+  background-color: #6565FF;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+ border-color: #6565FF;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+  right: 0px; 
+}
