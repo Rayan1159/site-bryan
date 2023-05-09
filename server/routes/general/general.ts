@@ -2,11 +2,11 @@ import {Router} from "express";
 import {NewsModel} from "../../database/models/News";
 import {UserModel} from "../../database/models/User";
 
-const general: NewsModel = new NewsModel();
+const news: NewsModel = new NewsModel();
 const user: UserModel = new UserModel();
 const generalRoutes = Router();
 
-generalRoutes.post("/general/news/create", async (req, res) => {
+generalRoutes.post("news/create", async (req, res) => {
     const title: string = req.body.title;
     const content: string = req.body.content;
     const sessionId: string = req.body.sessionId;
@@ -15,7 +15,7 @@ generalRoutes.post("/general/news/create", async (req, res) => {
     })
 
     if (title && content && author) {
-        const created = await general.create({
+        const created = await news.create({
             title: title,
             content: content,
             author: author,
@@ -28,5 +28,21 @@ generalRoutes.post("/general/news/create", async (req, res) => {
         })
     }
 })
+
+generalRoutes.post("/news", async (req, res) => {
+    const task = req.body.task;
+    const data = await news.getNews();
+
+    if (task == "getNews") {
+        if (data == null) return res.json({
+            status: "Failed to get news"
+        })
+        return res.json({
+            status: "News retrieved",
+            news: data
+        })
+    }
+    return;
+});
 
 export default generalRoutes;

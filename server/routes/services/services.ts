@@ -4,12 +4,11 @@ import {UserModel} from "../../database/models/User";
 const serviceRoutes: Router = Router();
 const user: UserModel = new UserModel();
 
-serviceRoutes.post("/services/user", async (req, res, next) => {
+serviceRoutes.post("/user", async (req, res, next) => {
     const task: string = req.body.task;
     const sessionId: string = req.body.sessionId;
 
     if (task == "resolveName") {
-
         const data: string = await user.getUsername({
             sessionId: sessionId
         })

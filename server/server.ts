@@ -16,13 +16,12 @@ const server = async () => {
     app.use(bodyParser.urlencoded({
         extended: false
     }));
-    app.use("/auth", userRoutes);
-    app.use("/services", serviceRoutes)
-    app.use("/general", generalRoutes)
     app.use(bodyParser.json());
     app.use(cors())
     app.set('json spaces', 2)
-
+    app.use("/auth", userRoutes);
+    app.use("/services", serviceRoutes)
+    app.use("/general", generalRoutes)
 
     app.listen(1337, () => {
         console.log("Server listening for requests")
