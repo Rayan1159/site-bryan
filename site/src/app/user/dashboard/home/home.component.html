@@ -56,31 +56,23 @@
 
   </div>
 
-  <div class="container-2" *ngIf="Object.keys(posts).length <= 0">
-    No news
-  </div>
+  <div>
+    <h3>News & Updates</h3>
 
-  <div class="container-2" *ngFor="let key in posts">
+    <div class="container-general">
 
-   <div>
-     <h3>News & Updates</h3>
+      <div class="date-title">
 
-     <div class="container-general">
+        <div id="date">00-00-0000</div>
+        <div id="name">test</div>
 
-       <div class="date-title">
+      </div>
 
-         <div id="date">00-00-0000</div>
-         <div id="name">{{posts[key].title}}</div>
+      <div class="general">
+        test
+      </div>
 
-       </div>
-
-       <div class="general">
-         {{posts[key].content}}
-       </div>
-
-     </div>
-   </div>
-
+    </div>
   </div>
 
   <div class="container-3">

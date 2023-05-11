@@ -10,8 +10,6 @@ import {NewsModel} from "./database/models/News";
 
 const server = async () => {
     const app= express();
-    const user: UserModel = new UserModel();
-    const news: NewsModel = new NewsModel();
 
     app.use(bodyParser.urlencoded({
         extended: false

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { INewsResponse } from "../../interfaces/NewsInterface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
 
-  private endpoint: string = "http://localhost:1337/service/news"
+  private endpoint: string = "http://localhost:1337/general/news"
 
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -24,9 +25,7 @@ export class NewsService {
       headers: this.httpHeaders
     }).subscribe({
       next: (data: any) => {
-        if (data) {
-          return data.news;
-        }
+        console.log(data.news);
       },
       error: (err: any) => {
         console.log(err);

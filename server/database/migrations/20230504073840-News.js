@@ -12,7 +12,7 @@ module.exports = {
       title: Sequelize.STRING(255),
       content: Sequelize.STRING(500),
       author: Sequelize.STRING,
-      data: Sequelize.DATE,
+      date: Sequelize.DATE,
       profile: Sequelize.STRING(200),
     });
   },
