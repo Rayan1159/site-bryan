@@ -30,7 +30,9 @@ export class RegisterComponent {
     "accept": "application/json"
   })
 
-  constructor(private readonly http: HttpClient, private readonly toastr: ToastrService, private router: Router) {}
+  constructor(private readonly http: HttpClient,
+              private readonly toastr: ToastrService,
+              private router: Router) {}
 
   public async resolved(captchaResponse: string) {
     this.captchaIsSolved = !this.captchaIsSolved;

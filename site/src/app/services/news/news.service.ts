@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { INewsResponse } from "../../interfaces/NewsInterface";
+import { INewsData } from "../../interfaces/NewsInterface";
+import {lastValueFrom, Observable, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
+  public news$?: Observable<INewsData>
 
   private endpoint: string = "http://localhost:1337/general/news"
 
@@ -16,23 +18,20 @@ export class NewsService {
 
   constructor(private readonly request: HttpClient) { }
 
-  public async getNews(): Promise<any> {
+  public getNews(): Promise<Object> {
     const task: {task: string} = {
       task: "getNews"
     }
-
-    return this.request.post(this.endpoint, task, {
-      headers: this.httpHeaders
-    }).subscribe({
-      next: (data: any) => {
-        console.log(data.news);
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-      complete: () => {
-        return;
-      }
-    })
+    return lastValueFrom(
+      this.request.post<INewsData>(this.endpoint, task, {
+        headers: this.httpHeaders
+      }).pipe(
+        tap({
+          error: (err: any) => {
+            console.log(err);
+          }
+        }
+      )
+    ));
   }
 }

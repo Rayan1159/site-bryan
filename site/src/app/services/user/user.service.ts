@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
+import {lastValueFrom, Observable, take, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,9 @@ import {ToastrService} from "ngx-toastr";
 export class UserService {
 
   private endpoint: string = "http://localhost:1337/services/user";
-
   private userData?: any
+
+  private username?: string;
 
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -21,11 +23,11 @@ export class UserService {
     this.userData = JSON.parse(localStorage.getItem("user") || "{}");
   }
 
-  public async isAuthenticated(): Promise<boolean> {
+  public isAuthenticated(): boolean {
     return this.userData.authenticated;
   }
 
-  public async getUsername(): Promise<string | null> {
+  public getUsername(): Promise<Object> | null {
     const task: {
       task: string,
       sessionId: any
@@ -34,21 +36,23 @@ export class UserService {
       sessionId: this.userData.id
     }
 
-    if (await this.isAuthenticated()){
-      this.request.post(this.endpoint, task, {
-        headers: this.httpHeaders
-      }).subscribe({
-        next: (data: any) => {
-          if (data) {
-            return data.username;
+    if (this.isAuthenticated()){
+      return new Promise((resolve, reject) => {
+        this.request.post(this.endpoint, task, {
+          headers: this.httpHeaders
+        }).pipe(
+          take(1)
+        ).subscribe({
+          next: (data: any) => {
+            resolve(data)
+          },
+          error: (err: any) => {
+            reject(err)
+          },
+          complete: () => {
+            return;
           }
-        },
-        error: (err: any) => {
-          this.showToast("Error", "Check console");
-        },
-        complete: () => {
-          return;
-        }
+        })
       })
     }
     return null;
@@ -65,7 +69,7 @@ export class UserService {
       }).subscribe({
         next: (data: any) => {
           if (data) {
-            return data.role;
+            return data.data;
           }
         },
         error: (err: any) => {

@@ -23,7 +23,9 @@ export class LoginComponent {
     'Content-Type': 'application/json',
   });
 
-  constructor(private readonly http: HttpClient, private readonly toastr: ToastrService, private router: Router) {}
+  constructor(private readonly http: HttpClient,
+              private readonly toastr: ToastrService,
+              private router: Router) {}
   public async login(): Promise<void> {
     const emailRegex: RegExp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
     if (!this.user.email && !this.user.password) this.showToast("Error", "Credentials are not set")

@@ -1,4 +1,4 @@
-export interface INewsResponse {
+export interface INewsData {
   id?: number;
   title: string;
   content: string;
