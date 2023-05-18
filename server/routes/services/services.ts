@@ -34,6 +34,13 @@ serviceRoutes.post("/user", async (req, res, next) => {
         });
     }
 
+    if (task == "count") {
+        const count = await user.count();
+        return res.json({
+            count: count
+        })
+    }
+
 })
 
 export default serviceRoutes;

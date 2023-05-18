@@ -15,7 +15,7 @@ const server = async () => {
         extended: false
     }));
     app.use(bodyParser.json());
-    app.use(cors())
+    app.use(cors());
     app.set('json spaces', 2)
     app.use("/auth", userRoutes);
     app.use("/services", serviceRoutes)

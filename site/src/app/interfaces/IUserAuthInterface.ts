@@ -3,3 +3,7 @@ export interface IUserAuthInterface {
   password: string;
   confirm?: string
 }
+
+export interface IUserCount {
+  count: number;
+}

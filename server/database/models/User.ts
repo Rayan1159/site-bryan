@@ -120,4 +120,8 @@ export class UserModel extends User {
         }
         return null
     }
+
+    public async count(): Promise<number> {
+        return await User.count();
+    }
 }

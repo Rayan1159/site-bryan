@@ -27,7 +27,7 @@
 
       <div class="register-users-container">
         <img src="../../../../assets/register-users.png">
-        <div id="register-users">0000</div>
+        <div id="register-users">{{ userCount }}</div>
       </div>
 
     </div>
@@ -56,22 +56,20 @@
 
   </div>
 
-  <div>
-    <h3>News & Updates</h3>
-
+  <div class="container-2" *ngFor="let post of newsPosts | objectToArray">
     <div class="container-general">
+      <h3>News post</h3>
 
       <div class="date-title">
 
-        <div id="date">00-00-0000</div>
-        <div id="name">test</div>
+        <div id="date">{{ post.value.date }}</div>
+        <div id="name">{{ post.value.title }}</div>
 
       </div>
 
       <div class="general">
-        test
+        {{ post.value.content }}
       </div>
-
     </div>
   </div>
 

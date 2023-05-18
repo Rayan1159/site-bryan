@@ -29,7 +29,10 @@ export class NewsModel extends News {
     }
 
     public async getNews(): Promise<any[]> {
-        return await News.findAll()
+        const data = await News.findAll();
+        return data.map((news) => {
+            return news.toJSON();
+        });
     }
 
 }

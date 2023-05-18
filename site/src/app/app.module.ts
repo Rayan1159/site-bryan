@@ -18,6 +18,7 @@ import { ServersComponent } from './user/servers/servers.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import {UserService} from "./services/user/user.service";
 import {NewsService} from "./services/news/news.service";
+import { ObjectToArrayPipe } from "./pipes/object-to-array.pipe";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {NewsService} from "./services/news/news.service";
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ServersComponent
+    ServersComponent,
+    ObjectToArrayPipe
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -44,7 +46,8 @@ import {NewsService} from "./services/news/news.service";
     HttpClient,
     ToastrService,
     UserService,
-    NewsService
+    NewsService,
+    ObjectToArrayPipe
   ],
   bootstrap: [AppComponent],
 })

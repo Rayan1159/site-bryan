@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { INewsData } from "../../interfaces/NewsInterface";
-import {lastValueFrom, Observable, tap} from "rxjs";
+import {lastValueFrom, Observable, take, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
-  public news$?: Observable<INewsData>
-
   private endpoint: string = "http://localhost:1337/general/news"
 
   private httpHeaders: HttpHeaders = new HttpHeaders({
@@ -18,7 +16,7 @@ export class NewsService {
 
   constructor(private readonly request: HttpClient) { }
 
-  public getNews(): Promise<Object> {
+  public getNews(): Promise<INewsData> {
     const task: {task: string} = {
       task: "getNews"
     }
@@ -26,12 +24,18 @@ export class NewsService {
       this.request.post<INewsData>(this.endpoint, task, {
         headers: this.httpHeaders
       }).pipe(
+        take(1),
         tap({
+          next: (data: INewsData) => {
+            return data;
+          },
           error: (err: any) => {
-            console.log(err);
+            console.error(err)
+          },
+          complete: () => {
+            return;
           }
         }
-      )
-    ));
+    )));
   }
 }

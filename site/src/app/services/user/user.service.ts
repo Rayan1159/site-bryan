@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {lastValueFrom, Observable, take, tap} from "rxjs";
+import {IUserCount} from "../../interfaces/IUserAuthInterface";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,6 @@ export class UserService {
 
   private endpoint: string = "http://localhost:1337/services/user";
   private userData?: any
-
-  private username?: string;
 
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -37,23 +36,17 @@ export class UserService {
     }
 
     if (this.isAuthenticated()){
-      return new Promise((resolve, reject) => {
+      return lastValueFrom(
         this.request.post(this.endpoint, task, {
           headers: this.httpHeaders
         }).pipe(
-          take(1)
-        ).subscribe({
-          next: (data: any) => {
-            resolve(data)
-          },
-          error: (err: any) => {
-            reject(err)
-          },
-          complete: () => {
-            return;
-          }
-        })
-      })
+          tap({
+            error: (err: any) => {
+              this.showToast("Error", "Check console");
+            }
+          })
+        )
+      )
     }
     return null;
   }
@@ -95,25 +88,25 @@ export class UserService {
     });
   }
 
-  public async registeredUsers(): Promise<any> {
-    const task = {
-      task: "registeredUsers"
+  public count(): Promise<IUserCount> {
+    const task: {task: string} = {
+      task: "count"
     }
-    this.request.post(this.endpoint, task, {
-      headers: this.httpHeaders
-    }).subscribe({
-      next: (data: any) => {
-        if (data) {
-          return data.users;
+
+    return lastValueFrom(
+      this.request.post<IUserCount>(this.endpoint, {
+        task
+      }, {
+        headers: this.httpHeaders
+      }).pipe(
+        take(1),
+        tap({
+          error: (err: any) => {
+            console.log(err);
+          }
         }
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-      complete: () => {
-        return;
-      }
-    })
+      )
+    ));
   }
 
 }

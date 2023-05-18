@@ -31,7 +31,7 @@ generalRoutes.post("news/create", async (req, res) => {
 
 generalRoutes.post("/news", async (req, res) => {
     const task = req.body.task;
-    const data = await news.getNews();
+    const data: any[] = await news.getNews();
 
     if (task == "getNews") {
         if (data == null) return res.json({

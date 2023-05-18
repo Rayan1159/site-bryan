@@ -57,4 +57,6 @@ userRoutes.post("/register", async (req, res) => {
     }
 })
 
+userRoutes.post("")
+
 export default userRoutes;

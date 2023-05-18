@@ -1,8 +1,8 @@
 import {Sequelize} from "sequelize";
 
-export const sequelize = new Sequelize("az", 'root', '', {
+export const sequelize = new Sequelize("az", 'root', 'Runescapex@1', {
     host: 'localhost',
-    dialect: "mysql"
+    dialect: "mysql",
 })
 
 sequelize.authenticate().then(() => {
