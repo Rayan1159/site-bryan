@@ -25,12 +25,15 @@
   .container-login {
     margin-top: 3em;
 
-    padding: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 
     border-radius: 0.5em;
     background-color: var(--color-pricing);
   }
 }
+
+
 
 // Input styling
 
@@ -48,6 +51,12 @@
     background-color: transparent;
     color: white;
     border: none;
+  }
+
+  @media (max-width: 1600px) {
+    button {
+      display: none;
+    }
   }
 
   label {
@@ -249,4 +258,27 @@ button.submit:hover {
     }
   }
 }
+
+@media (min-width: 550px) {
+  .login {
+    padding-inline: 15%;
+    padding-top: 4em;
+  }
+}
+
+@media (min-width: 780px) {
+  .login {
+    padding-inline: 25%;
+    padding-top: 4em;
+  }
+}
+
+@media (min-width: 1300px) {
+  .login {
+    padding-inline: 35%;
+    padding-top: 4em;
+  }
+}
+
+
 
