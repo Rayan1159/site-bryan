@@ -6,10 +6,11 @@ import {LoginComponent} from "./user/auth/login/login.component";
 import {RegisterComponent} from "./user/auth/register/register.component";
 import { ServersComponent } from './user/servers/servers.component';
 import {AuthGuard} from "./guards/auth.guard";
+import {ServerSettingsComponent} from "./user/servers/server-settings/server-settings.component";
 
 const routes: Routes = [
   {
-    path: '', component: LandingComponent
+    path: '', component: LandingComponent,
   },
   {
     path: 'dashboard/home', component: HomeComponent,
@@ -18,13 +19,13 @@ const routes: Routes = [
     path: "dashboard/servers", component: ServersComponent,
   },
   {
-    path: 'dashboard/servers', component: ServersComponent
+    path: "dashboard/server-settings", component: ServerSettingsComponent,
   },
   {
-    path: 'auth/login', component: LoginComponent
+    path: 'auth/login', component: LoginComponent,
   },
   {
-    path: 'auth/register', component: RegisterComponent
+    path: 'auth/register', component: RegisterComponent,
   }
 ];
 
