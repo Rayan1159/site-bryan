@@ -1,128 +1,212 @@
 // Navigation and header mobile and tablet
 
 header {
+  display: flex;
+  justify-content: center;
+  
+  border-bottom: 1px solid #414141;
+}
+  
+nav {
+  position: relative;
+  bottom: 15px;
+
+  margin: 0 auto;
+  width: 80%;
+  height: 60px;
+  border-radius: 5px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  z-index: 99;
+  background-color: var(--color-pricing);
+  
+  .links {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    width: 90%;
   
-    border-bottom: 1px solid #414141;
-  }
+    a {
+      font-weight: 600;
   
-  nav {
-    position: relative;
-    bottom: 15px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
   
-    margin: 0 auto;
-    width: 80%;
-    height: 60px;
-    border-radius: 5px;
+    .a-active {
+      color: var(--color-active);
+    }
   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    z-index: 99;
-    background-color: var(--color-pricing);
-  
-    .links {
-      display: flex;
-      justify-content: space-between;
-      width: 90%;
-  
-      a {
-        font-weight: 600;
-  
-        text-decoration: none;
-        color: var(--text-white);
-      }
-  
-      .a-active {
-        color: var(--color-active);
-      }
-  
-      a:hover {
-        color: #6565ff;
-      }
+    a:hover {
+      color: #6565ff;
     }
   }
+}
   
   // Navigation and header after 650px
   
 @media (min-width: 650px) {
   
-    nav {
-      .links {
-        display: flex;
-        justify-content: space-between;
-        width: 90%;
+  nav {
+    .links {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
     
-        a {
-          font-size: 18px;
-          font-weight: 600;
+      a {
+        font-size: 18px;
+        font-weight: 600;
     
-          text-decoration: none;
-          color: var(--text-white);
-        }
+        text-decoration: none;
+        color: var(--text-white);
+      }
     
-        .a-active {
-          color: var(--color-active);
-        }
+      .a-active {
+        color: var(--color-active);
+      }
     
-        a:hover {
-          color: #6565ff;
-        }
+      a:hover {
+        color: #6565ff;
       }
     }
+  }
 }
   
   // Navigation and header after 850px
   
 @media (min-width: 850px) {
-    header {
-      display: flex;
-      justify-content: center;
+  header {
+    display: flex;
+    justify-content: center;
     
-      border-bottom: 1px solid #414141;
+    border-bottom: 1px solid #414141;
+  }
+    
+  nav {
+    position: relative;
+    bottom: 15px;
+    
+    margin: 0 auto;
+    width: 50%;
+    height: 60px;
+    border-radius: 5px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 99;
+    background-color: var(--color-pricing);
+    
+    .links {
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+    
+      a {
+        font-size: 20px;
+        font-weight: 700;
+    
+        text-decoration: none;
+        color: var(--text-white);
+      }
+    
+      .a-active {
+        color: var(--color-active);
+      }
+    
+      a:hover {
+        color: #6565ff;
+      }
     }
-    
-    nav {
-      position: relative;
-      bottom: 15px;
-    
-      margin: 0 auto;
-      width: 50%;
-      height: 60px;
+  }  
+}
+
+// Main
+
+@media (min-width: 100px) {
+  .dashboard {
+
+    .container {
+      width: 80%;
       border-radius: 5px;
-    
+      margin: 0 auto;
+      margin-top: 50px;
+      padding: 20px;
+      background-color: var(--color-pricing);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-    
-      z-index: 99;
-      background-color: var(--color-pricing);
-    
-      .links {
+      gap: 35px;
+
+      h3 {
+        font-size: 16px;
+        color: var(--text-white);
+      }
+
+      .container-toggles {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        width: 80%;
-    
-        a {
-          font-size: 20px;
-          font-weight: 700;
-    
-          text-decoration: none;
+        width: 100%;
+
+        h3 {
+          display: inline-block;
+          position: relative;
+          bottom: 3px;
+          width: 100%;
+
+          font-size: 16px;
           color: var(--text-white);
         }
-    
-        .a-active {
-          color: var(--color-active);
-        }
-    
-        a:hover {
-          color: #6565ff;
+      }
+    }
+  }
+}
+
+@media (min-width: 650px) {
+  .dashboard {
+
+    .container {
+      
+      h3 {
+        font-size: 18px;
+      }
+
+      .container-toggles {
+
+        h3 {
+          font-size: 18px;
         }
       }
-    }  
+    }
+  }  
 }
+
+@media (min-width: 850px) {
+  .dashboard {
+
+    .container {
+      width: 50%;
+      padding: 40px;
+
+      h3 {
+        font-size: 20px;
+      }
+
+      .container-toggles {
+
+        h3 {
+          font-size: 20px;
+        }
+      }
+    }
+  }  
+}
+
 
 
 
